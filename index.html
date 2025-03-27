@@ -17,7 +17,6 @@
             margin: 20px 0;
             font-weight: 600;
         }
-
         .container {
             display: flex;
             justify-content: center;
@@ -25,14 +24,12 @@
             flex-direction: column;
             padding: 20px;
         }
-
         .structure-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
         }
-
         .structure-container div {
             background: white;
             padding: 20px;
@@ -41,11 +38,9 @@
             width: 320px;
             max-width: 90%;
         }
-
         h2 {
             font-weight: 500;
         }
-
         .structure {
             min-height: 100px;
             border: 2px solid #333;
@@ -56,19 +51,16 @@
             gap: 5px;
             margin: 10px 0;
         }
-
         #queue {
             flex-direction: row;
             overflow-x: auto;
         }
-
         .input-container {
             display: flex;
             gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         input {
             padding: 8px;
             border: 1px solid #333;
@@ -76,7 +68,6 @@
             font-size: 16px;
             font-family: 'Poppins', sans-serif;
         }
-
         button {
             padding: 10px 14px;
             border: none;
@@ -84,46 +75,39 @@
             color: white;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             transition: background 0.3s ease-in-out;
         }
-
         button:hover {
             background-color: #0056b3;
         }
-
         .element {
             background-color: #007bff;
             color:black;
             padding: 12px;
             border-radius: 5px;
             text-align: center;
-            width: 80px;
+            width: 82px;
             font-weight: bold;
             font-size: 16px;
         }
-
         @media (max-width: 600px) {
             .structure {
                 width: 100%;
             }
-
             .input-container {
                 flex-direction: column;
             }
-
             input, button {
                 width: 100%;
             }
         }
-
     </style>
 </head>
 <body>
     <h1>Stack & Queue Visualizer</h1>
-    
     <div class="container">
         <div class="structure-container">
             <div>
@@ -135,7 +119,6 @@
                     <button onclick="popStack()">Pop</button>
                 </div>
             </div>
-            
             <div>
                 <h2>Queue (FIFO)</h2>
                 <div id="queue" class="structure"></div>
@@ -158,14 +141,12 @@
             document.getElementById('stack').prepend(element);
             document.getElementById('stack-input').value = '';
         }
-        
         function popStack() {
             let stack = document.getElementById('stack');
             if (stack.firstChild) {
                 stack.removeChild(stack.firstChild);
             }
         }
-        
         function enqueue() {
             let value = document.getElementById('queue-input').value;
             if (value === '') return;
@@ -175,7 +156,6 @@
             document.getElementById('queue').appendChild(element);
             document.getElementById('queue-input').value = '';
         }
-        
         function dequeue() {
             let queue = document.getElementById('queue');
             if (queue.firstChild) {
