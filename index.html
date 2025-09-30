@@ -1,260 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stack & Queue Visualizer</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    /* General Page Styling */
-    body {
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 20px;
-    }
-
-    h1 {
-      margin: 20px 0;
-      font-weight: 600;
-      color: #333;
-    }
-
-    /* Container */
-    .container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    /* Holds Stack & Queue sections */
-    .structure-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    /* Card Style */
-    .structure-card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-      width: 360px;
-      transition: transform 0.2s ease-in-out;
-    }
-    .structure-card:hover {
-      transform: translateY(-5px);
-    }
-
-    h2 {
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #444;
-    }
-
-    /* Stack / Queue Display */
-    .structure {
-      min-height: 120px;
-      border: 2px dashed #333;
-      padding: 10px;
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
-      gap: 8px;
-      margin: 15px 0;
-      border-radius: 10px;
-      background: #fafafa;
-    }
-    #queue {
-      flex-direction: row;
-      justify-content: flex-start;
-      overflow-x: auto;
-    }
-
-    /* Input + Buttons */
-    .input-container {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    input {
-      padding: 10px;
-      border: 1px solid #aaa;
-      border-radius: 6px;
-      font-size: 16px;
-      width: 140px;
-      outline: none;
-      transition: border 0.3s;
-    }
-    input:focus {
-      border-color: #007bff;
-    }
-    button {
-      padding: 10px 14px;
-      border: none;
-      background-color: #007bff;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
-      transition: all 0.3s;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    button:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    /* Elements */
-    .element {
-      padding: 12px;
-      border-radius: 8px;
-      text-align: center;
-      width: 80px;
-      font-weight: bold;
-      font-size: 16px;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .stack-element {
-      background-color: #ffcc80;
-      color: #333;
-    }
-    .queue-element {
-      background-color: #80cbc4;
-      color: #333;
-    }
-
-    /* Status Message */
-    .status {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #d32f2f;
-      font-weight: 500;
-      min-height: 20px;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 600px) {
-      .structure-card {
-        width: 100%;
-      }
-      .input-container {
-        flex-direction: column;
-      }
-      input, button {
-        width: 100%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack & Queue Visualizer</title>
+ 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+          /* General Page Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            margin: 20px 0;
+            font-weight: 600;
+        }
+         /* Container for the whole page */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+         /* Holds both Stack & Queue sections */
+        .structure-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+         /* Individual box (Stack or Queue) */
+        .structure-container div {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            max-width: 90%;
+        }
+        h2 {
+            font-weight: 500;
+        }
+        
+        .structure {
+            min-height: 100px;
+            border: 2px solid #333;
+            padding: 10px;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        #queue {
+            flex-direction: row;
+            overflow-x: auto;
+        }
+        .input-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+        button {
+            padding: 10px 14px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 17px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            transition: background 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .element {
+            background-color: #007bff;
+            color:black;
+            padding: 12px;
+            border-radius: 5px;
+            text-align: center;
+            width: 82px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        @media (max-width: 600px) {
+            .structure {
+                width: 100%;
+            }
+            .input-container {
+                flex-direction: column;
+            }
+            input, button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
     <h1>Stack & Queue Visualizer</h1>
-
-    <div class="structure-container">
-      
-      <!-- Stack Section -->
-      <div class="structure-card">
-        <h2>Stack (LIFO)</h2>
-        <div id="stack" class="structure"></div>
-        <div class="status" id="stack-status"></div>
-        <div class="input-container">
-          <input type="text" id="stack-input" placeholder="Enter value">
-          <button onclick="pushStack()">Push</button>
-          <button onclick="popStack()">Pop</button>
+    <div class="container">
+        <div class="structure-container">
+             
+            <!-- Stack Section -->
+            <div>
+                <h2>Stack (LIFO)</h2>
+                <div id="stack" class="structure"></div>
+                <div class="input-container">
+                    <input type="text" id="stack-input" placeholder="Enter value">
+                    <button onclick="pushStack()">Push</button>
+                    <button onclick="popStack()">Pop</button>
+                </div>
+            </div>
+            <div>
+                
+            <!-- Queue Section -->
+                <h2>Queue (FIFO)</h2>
+                <div id="queue" class="structure"></div>
+                <div class="input-container">
+                    <input type="text" id="queue-input" placeholder="Enter value">
+                    <button onclick="enqueue()">Enqueue</button>
+                    <button onclick="dequeue()">Dequeue</button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Queue Section -->
-      <div class="structure-card">
-        <h2>Queue (FIFO)</h2>
-        <div id="queue" class="structure"></div>
-        <div class="status" id="queue-status"></div>
-        <div class="input-container">
-          <input type="text" id="queue-input" placeholder="Enter value">
-          <button onclick="enqueue()">Enqueue</button>
-          <button onclick="dequeue()">Dequeue</button>
-        </div>
-      </div>
-
     </div>
-  </div>
-
-  <script>
-    /* STACK FUNCTIONS */
-    function pushStack() {
-      let value = document.getElementById('stack-input').value.trim();
-      let status = document.getElementById('stack-status');
-      if (value === '') {
-        status.innerText = "Please enter a value!";
-        return;
-      }
-      status.innerText = "";
-      let element = document.createElement('div');
-      element.className = 'element stack-element';
-      element.innerText = value;
-      document.getElementById('stack').prepend(element);
-      document.getElementById('stack-input').value = '';
-    }
-
-    function popStack() {
-      let stack = document.getElementById('stack');
-      let status = document.getElementById('stack-status');
-      if (stack.firstChild) {
-        stack.removeChild(stack.firstChild);
-        status.innerText = "";
-      } else {
-        status.innerText = "Stack Underflow! (Empty)";
-      }
-    }
-
-    /* QUEUE FUNCTIONS */
-    function enqueue() {
-      let value = document.getElementById('queue-input').value.trim();
-      let status = document.getElementById('queue-status');
-      if (value === '') {
-        status.innerText = "Please enter a value!";
-        return;
-      }
-      status.innerText = "";
-      let element = document.createElement('div');
-      element.className = 'element queue-element';
-      element.innerText = value;
-      document.getElementById('queue').appendChild(element);
-      document.getElementById('queue-input').value = '';
-    }
-
-    function dequeue() {
-      let queue = document.getElementById('queue');
-      let status = document.getElementById('queue-status');
-      if (queue.firstChild) {
-        queue.removeChild(queue.firstChild);
-        status.innerText = "";
-      } else {
-        status.innerText = "Queue Empty!";
-      }
-    }
-  </script>
+    
+    <script>
+         /* STACK FUNCTIONS */
+        function pushStack() {
+            let value = document.getElementById('stack-input').value;
+            if (value === '') return;
+            let element = document.createElement('div');
+            element.className = 'element';
+            element.innerText = value;
+            document.getElementById('stack').prepend(element);
+            document.getElementById('stack-input').value = '';
+        }
+        function popStack() {
+            let stack = document.getElementById('stack');
+            if (stack.firstChild) {
+                stack.removeChild(stack.firstChild);
+            }
+        }
+        /* QUEUE FUNCTION */
+        function enqueue() {
+            let value = document.getElementById('queue-input').value;
+            if (value === '') return;
+            let element = document.createElement('div');
+            element.className = 'element';
+            element.innerText = value;
+            document.getElementById('queue').appendChild(element);
+            document.getElementById('queue-input').value = '';
+        }
+        function dequeue() {
+            let queue = document.getElementById('queue');
+            if (queue.firstChild) {
+                queue.removeChild(queue.firstChild);
+            }
+        }
+    </script>
 </body>
 </html>
